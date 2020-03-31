@@ -1,0 +1,138 @@
+<?php
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+
+// @codingStandardsIgnoreFile
+
+/** @var $block \Magento\Catalog\Block\Product\View */
+?>
+<?php
+$_helper = $this->helper(\Betzal\Seo\Helper\Data::class);
+$action = $this->getRequest()->getFullActionName();
+?>
+<?php if (($action != 'catalog_category_view') && ($action != 'catalog_product_view') ): ?>
+    <?php
+    $typeOrCard = '';
+    if ($action == 'cms_index_index') {
+        $typeOrCard = 'home';
+        }
+    else {
+        $typeOrCard = $this->getRequest()->getFrontName();
+    }
+    ?>
+    <meta property="og:site_name" content="<?= $_helper->getStoreName()?>" />
+    <meta property="og:type" content="<?= $typeOrCard?>" />
+    <meta property="og:title" content="<?= $block->escapeHtmlAttr($block->stripTags($block->getTitle())) ?>" />
+    <meta property="og:image" content="" />
+    <meta property="og:description" content="" />
+    <meta property="og:url" content="<?= $block->escapeUrl($_helper->getCurrentUrl()) ?>" />
+
+    <meta name="twitter:site" content="<?= $_helper->getStoreName()?>" />
+    <meta name="twitter:card" content="<?= $typeOrCard?>" />
+    <meta name="twitter:title" content="<?= $block->escapeHtmlAttr($block->stripTags($block->getTitle())) ?>"/>
+    <meta name="twitter:description" content=""/>
+
+    <script type="application/ld+json">
+        {
+            "@context": "http://schema.org/",
+            "@type": "BreadcrumbList",
+            "itemListElement": [
+                {
+                    "@type": "ListItem",
+                    "position": "1",
+                    "item": {
+                        "@id": "<?= $block->escapeUrl($_helper->getBaseUrl()) ?>",
+                        "name": "Home"
+                    }
+                },
+                {
+                    "@type": "ListItem",
+                    "position": "2",
+                    "item": {
+                        "@id": "<?= $block->escapeUrl($_helper->getCurrentUrl()) ?>",
+                        "name": "<?= $block->escapeHtmlAttr($block->stripTags($block->getTitle())) ?>"
+                    }
+                }
+            ]
+        }
+    </script>
+<?php endif ?>
+<script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "<?= $_helper->getWebsiteType()?>",
+        "image": [
+            "https://example.com/photos/1x1/photo.jpg",
+            "https://example.com/photos/4x3/photo.jpg",
+            "https://example.com/photos/16x9/photo.jpg"
+        ],
+        "@id": "<?= $block->escapeUrl($_helper->getBaseUrl()) ?>",
+        "name": "<?= $_helper->getStoreName()?>",
+        "address": {
+            "@type": "<?= $_helper->getPostalAddress()?>",
+            "streetAddress": "<?= $_helper->getStreetAddress()?>",
+            "addressLocality": "<?= $_helper->getAddressLocality()?>",
+            "addressRegion": "<?= $_helper->getAddressCity()?>",
+            "postalCode": "<?= $_helper->getPostalCode()?>",
+            "addressCountry": "<?= $_helper->getAddressCountry()?>"
+        },
+        "review": {
+            "@type": "Review",
+            "reviewRating": {
+                "@type": "Rating",
+                "ratingValue": "4",
+                "bestRating": "5"
+            },
+            "author": {
+                "@type": "Person",
+                "name": ""
+            }
+        },
+        "geo": {
+            "@type": "GeoCoordinates",
+            "latitude": <?= $_helper->getLatitude()?>,
+            "longitude": <?= $_helper->getLongitude()?>
+        },
+        "url": "<?= $_helper->getCurrentUrl()?>",
+        "telephone": "<?= $_helper->getTelephone()?>",
+        "openingHoursSpecification": [
+            {
+                "@type": "OpeningHoursSpecification",
+                "dayOfWeek": [
+                    "Monday",
+                    "Tuesday",
+                    "Wednesday",
+                    "Thursday",
+                    "Friday",
+                    "Saturday"
+                ],
+                "opens": "<?= $_helper->opensAt()?>",
+                "closes": "<?= $_helper->closesAt()?>"
+            }
+        ]
+    }
+</script>
+<script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "Optician",
+        "url": "<?= $block->escapeUrl($_helper->getBaseUrl()) ?>",
+        "logo": "<?= $block->escapeUrl($_helper->getLogoUrl()) ?>"
+    }
+</script>
+<script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "WebSite",
+        "url": "<?= $block->escapeUrl($_helper->getBaseUrl()) ?>",
+        "potentialAction": [
+            {
+                "@type": "SearchAction",
+                "target": "<?= $block->escapeUrl($_helper->getSearchUrl()) ?>",
+                "query-input": "required name=search_term_string"
+            }
+        ]
+    }
+</script>

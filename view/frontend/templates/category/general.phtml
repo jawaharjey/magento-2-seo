@@ -1,0 +1,51 @@
+<?php
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+
+// @codingStandardsIgnoreFile
+
+/** @var $block \Magento\Catalog\Block\Product\View */
+?>
+<?php
+$_category = $block->getCurrentCategory();
+$_helper = $this->helper(\Betzal\Seo\Helper\Data::class);
+?>
+
+<meta property="og:site_name" content="<?= $_helper->getStoreName()?>" />
+<meta property="og:type" content="category" />
+<meta property="og:title" content="<?= $block->escapeHtmlAttr($block->stripTags($_category->getName())) ?>" />
+<meta property="og:image" content="<?= $block->escapeUrl($_category->getImageUrl()) ?>" />
+<meta property="og:description" content="<?= $block->escapeHtmlAttr($block->stripTags($_category->getDescription())) ?>" />
+<meta property="og:url" content="<?= $block->escapeUrl($_category->getUrl()) ?>" />
+
+<meta name="twitter:site" content="<?= $_helper->getStoreName()?>" />
+<meta name="twitter:card" content="category" />
+<meta name="twitter:title" content="<?= $block->escapeHtmlAttr($block->stripTags($_category->getName())) ?>"/>
+<meta name="twitter:description" content="<?= $block->escapeHtmlAttr($block->stripTags($_category->getDescription())) ?>"/>
+
+<script type="application/ld+json">
+    {
+        "@context": "http://schema.org/",
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+            {
+                "@type": "ListItem",
+                "position": "1",
+                "item": {
+                    "@id": "<?= $block->escapeUrl($_helper->getBaseUrl()) ?>",
+                    "name": "Home"
+                }
+            },
+            {
+                "@type": "ListItem",
+                "position": "2",
+                "item": {
+                    "@id": "<?= $block->escapeUrl($_category->getUrl()) ?>",
+                    "name": "<?= $block->escapeHtmlAttr($block->stripTags($_category->getName())) ?>"
+                }
+            }
+        ]
+    }
+</script>

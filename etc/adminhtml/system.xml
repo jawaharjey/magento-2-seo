@@ -1,0 +1,84 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
+    <system>
+        <tab id="betzal" translate="label" sortOrder="9999999">
+            <label>Betzal</label>
+        </tab>
+        <section id="betzal_seo" translate="label" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="1">
+            <class>separator-top</class>
+            <label>SEO</label>
+            <tab>betzal</tab>
+            <resource>Betzal_Seo::config_seo</resource>
+            <group id="seo" translate="label" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Settings</label>
+                <field id="active" translate="label" type="select" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Enable</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="website_type" translate="label" type="text" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Website Type</label>
+                    <comment><![CDATA[Example:Optician]]></comment>
+                    <depends>
+                        <field id="active">1</field>
+                    </depends>
+                </field>
+            </group>
+            <group id="geo" translate="label" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>GeoCoordinates</label>
+                <field id="latitude" translate="label" type="text" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Latitude</label>
+                    <comment><![CDATA[Example:40.761293]]></comment>
+                </field>
+                <field id="longitude" translate="label" type="text" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Longitude</label>
+                    <comment><![CDATA[Example:-73.982294]]></comment>
+                </field>
+            </group>
+            <group id="store_information" translate="label" type="text" sortOrder="100" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Store Information</label>
+                <field id="name" translate="label" type="text" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Store Name</label>
+                </field>
+                <field id="phone" translate="label" type="text" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Store Phone Number</label>
+                </field>
+                <field id="hour_opens" translate="label" type="text" sortOrder="22" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Store Opening Hour</label>
+                </field>
+
+                <field id="hour_closes" translate="label" type="text" sortOrder="22" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Store Closing Hour</label>
+                </field>
+
+                <field id="country_id" translate="label" type="select" sortOrder="25" showInDefault="1" showInWebsite="1" showInStore="0">
+                    <label>Country</label>
+                    <source_model>Magento\Directory\Model\Config\Source\Country</source_model>
+                    <frontend_class>countries</frontend_class>
+                    <can_be_empty>1</can_be_empty>
+                </field>
+                <field id="region_id" translate="label" type="text" sortOrder="27" showInDefault="1" showInWebsite="1" showInStore="0">
+                    <label>Region/State</label>
+                </field>
+                <field id="postcode" translate="label" type="text" sortOrder="30" showInDefault="1" showInWebsite="1" showInStore="0">
+                    <label>ZIP/Postal Code</label>
+                </field>
+                <field id="city" translate="label" type="text" sortOrder="45" showInDefault="1" showInWebsite="1" showInStore="0">
+                    <label>City</label>
+                </field>
+                <field id="street_line1" translate="label" type="text" sortOrder="55" showInDefault="1" showInWebsite="1" showInStore="0">
+                    <label>Street Address</label>
+                </field>
+                <field id="street_line2" translate="label" type="text" sortOrder="60" showInDefault="1" showInWebsite="1" showInStore="0">
+                    <label>Street Address Line 2</label>
+                </field>
+            </group>
+
+        </section>
+    </system>
+</config>

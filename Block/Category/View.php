@@ -1,0 +1,16 @@
+<?php
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+namespace Betzal\Seo\Block\Category;
+
+/**
+ * Class View
+ * @api
+ * @package Magento\Catalog\Block\Category
+ * @since 100.0.2
+ */
+class View extends \Magento\Catalog\Block\Category\View
+{
+}
