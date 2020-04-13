@@ -1,7 +1,7 @@
 <?php
 /**
- * Copyright © Magento, Inc. All rights reserved.
- * See COPYING.txt for license details.
+ * Copyright © 2020 Betzal. All Rights Reserved..
+ * Author: Jawahar Jeyaraman (jeyaraman.jawahar@gmail.com)
  */
 namespace Betzal\Seo\Helper;
 
